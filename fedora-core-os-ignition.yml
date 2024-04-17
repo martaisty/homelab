@@ -26,6 +26,7 @@ passwd:
     - name: martaisty
       groups:
         - wheel
+      password_hash: <hash-here>
       ssh_authorized_keys_local:
         - pub_keys/martaisty.pub
     - name: hass
