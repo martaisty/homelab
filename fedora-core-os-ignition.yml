@@ -1,0 +1,39 @@
+variant: fcos
+version: 1.5.0
+storage:
+  files:
+    - path: /etc/hostname
+      mode: 0644
+      contents:
+        inline: homer
+    - path: /etc/ssh/sshd_config.d/20-enable-passwords.conf
+      mode: 0644
+      contents:
+        local: enable-passwords.conf
+    - path: /etc/zincati/config.d/55-updates-strategy.toml
+      contents:
+        local: update-strategy.toml
+  links:
+    - path: /etc/localtime
+      target: ../usr/share/zoneinfo/Europe/Kyiv
+systemd:
+  units:
+    - name: custom-bootupd-auto.service
+      enabled: true
+      contents_local: auto-update-bootloader.service
+passwd:
+  users:
+    - name: martaisty
+      groups:
+        - wheel
+      ssh_authorized_keys_local:
+        - pub_keys/martaisty.pub
+    - name: hass
+      groups:
+        - docker
+      ssh_authorized_keys_local:
+        - pub_keys/hass.pub
+    - name: orca
+      groups:
+        - wheel
+      password_hash: <hash-here>
