@@ -2,7 +2,7 @@ version: '3'
 services:
   portainer:
     container_name: portainer
-    image: portainer/portainer-ce:2.19.4-alpine
+    image: portainer/portainer-ce:2.20.1-alpine
     volumes:
       - portainer_data:/data
       - $XDG_RUNTIME_DIR/docker.sock:/var/run/docker.sock
@@ -11,7 +11,7 @@ services:
       - "9443:9443"
   home-assistant:
     container_name: home-assistant
-    image: "ghcr.io/home-assistant/home-assistant:2023.12"
+    image: ghcr.io/home-assistant/home-assistant:2024.4
     volumes:
       - /home/hass/homelab/ha-config:/config
       - /etc/localtime:/etc/localtime:ro
