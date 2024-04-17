@@ -2,3 +2,5 @@
 
 fcos-config/pub_keys
 fcos.ign
+
+mosquitto/certs/
