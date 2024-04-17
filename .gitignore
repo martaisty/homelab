@@ -1,6 +1,7 @@
-.idea
+.idea/
 
-fcos-config/pub_keys
+fcos-config/pub_keys/
 fcos.ign
 
 mosquitto/config/certs/
+mosquitto/config/pwfile
