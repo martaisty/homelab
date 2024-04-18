@@ -1,3 +1,8 @@
+# TODO docker compose installation
+#1. add docker repo to rpm-ostree
+#2. install docker-compose-plugin
+# TODO mDNS config
+#1. /etc/systemd/resolved.conf MulticastDNS=yes
 variant: fcos
 version: 1.5.0
 storage:
