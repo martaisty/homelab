@@ -23,7 +23,7 @@ services:
     container_name: mqtt-broker
     image: eclipse-mosquitto:2.0-openssl
     volumes:
-      - /home/hass/homelab/mosquitto/config:/mosquitto/config
+      - /home/hass/homelab/mosquitto/config:/mosquitto/config:ro
       - /home/hass/homelab/mosquitto/data:/mosquitto/data
       - /home/hass/homelab/mosquitto/log:/mosquitto/log
     restart: unless-stopped
