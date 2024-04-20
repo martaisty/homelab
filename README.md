@@ -1,29 +1,44 @@
 # homelab
+
 My HomeLab config
 
 ## Fedora CoreOS
 
-### Generate password hash
+### Passwords setup
+
+Generate password hash and update [fedora-core-os-ignition.yml](fedora-core-os-ignition.yml):
 
 ```shell
 podman run -ti --rm quay.io/coreos/mkpasswd --method=yescrypt
 ```
 
-### Generate ignition
+Place public keys at [fcos-config/pub_keys](fcos-config/pub_keys).
 
-Place public keys at `fcos-config/pub_keys`
+### Generate ignition
 
 ```shell
 butane --files-dir fcos-config --pretty --strict --output fcos.ign fedora-core-os-ignition.yml
 ```
 
-## Mosquito 
+## Mosquito
 
-### Permissions 
+### Permissions
 
-Owner and group - app user (inside container)
+Get user's `uid`:
 
-- `config/certs/` - `555`
-- `config/certs/*` - `400`
-- `config/mosquitto.conf` - `644`
-- `config/pwfile` - `600`
+```shell
+id -u
+```
+
+and `gid`:
+
+```shell
+id -g
+```
+
+and update [docker-compose.yaml](docker-compose.yaml) `services.mqtt-broker.user`.
+
+Update sensitive files permissions:
+
+- `mosquitto/config/certs/*` - `640`
+- `mosquitto/config/pwfile` - `640`
