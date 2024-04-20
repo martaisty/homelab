@@ -1,6 +1,3 @@
-# TODO docker compose installation
-#1. add docker repo to rpm-ostree
-#2. install docker-compose-plugin
 # TODO mDNS config
 #1. /etc/systemd/resolved.conf MulticastDNS=yes
 variant: fcos
@@ -18,6 +15,10 @@ storage:
     - path: /etc/zincati/config.d/55-updates-strategy.toml
       contents:
         local: update-strategy.toml
+    - path: /etc/yum.repos.d/docker-ce.repo
+      mode: 0644
+      contents:
+        source: https://download.docker.com/linux/fedora/docker-ce.repo
   links:
     - path: /etc/localtime
       target: ../usr/share/zoneinfo/Europe/Kyiv
@@ -26,6 +27,13 @@ systemd:
     - name: custom-bootupd-auto.service
       enabled: true
       contents_local: auto-update-bootloader.service
+    - name: podman.service
+      enabled: false
+    - name: docker.service
+      enabled: true
+    - name: install-docker-compose.service
+      enabled: true
+      contents_local: install-docker-compose.service
 passwd:
   users:
     - name: martaisty
