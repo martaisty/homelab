@@ -22,13 +22,14 @@ services:
   mqtt-broker:
     container_name: mqtt-broker
     image: eclipse-mosquitto:2.0-openssl
+    user: <uid>:<gid>
     volumes:
       - /home/hass/homelab/mosquitto/config:/mosquitto/config:ro
       - /home/hass/homelab/mosquitto/data:/mosquitto/data
       - /home/hass/homelab/mosquitto/log:/mosquitto/log
+      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     ports:
       - "8883:8883"
 volumes:
   portainer_data:
-      
