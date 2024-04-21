@@ -4,7 +4,7 @@ services:
     image: portainer/portainer-ce:2.20.1-alpine
     volumes:
       - portainer_data:/data
-      - $XDG_RUNTIME_DIR/docker.sock:/var/run/docker.sock:z
+      - /var/run/docker.sock:/var/run/docker.sock:z
     restart: always
     ports:
       - "9443:9443"
