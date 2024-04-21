@@ -24,20 +24,6 @@ butane --files-dir fcos-config --pretty --strict --output fcos.ign fedora-core-o
 
 ### Permissions
 
-Get user's `uid`:
-
-```shell
-id -u
-```
-
-and `gid`:
-
-```shell
-id -g
-```
-
-and update [docker-compose.yaml](docker-compose.yaml) `services.mqtt-broker.user`.
-
 Update sensitive files permissions:
 
 - `mosquitto/config/certs/*` - `640`
